@@ -1,0 +1,208 @@
+﻿@model ResturantApp.Models.Staff
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnCreate").click(function () {
+            SendMail();
+        });
+    });
+
+    function SendMail() {
+
+        var link = "mailto:ulukaprince1996@gmail.com" +
+            "&subject=" + escape("Welcomr to NO CASH") +
+            "&body=" + escape("This is body here");
+        window.location.href = link;
+    }
+
+</script>
+
+<style>
+    textarea {
+        text-align: center;
+    }
+
+    .modal {
+        text-align: center;
+        padding: 0 !important;
+    }
+
+        .modal:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+        }
+
+    .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    fieldset {
+        border: 1px solid #ddd !important;
+        margin: 0;
+        xmin-width: 0;
+        padding: 10px;
+        position: relative;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        padding-left: 10px !important;
+    }
+
+    legend {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 0px;
+        width: 35%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px 5px 5px 10px;
+        background-color: #ffffff;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    if (Session["UserName"] != null)
+    {
+        <text>
+          @Session["UserName"].ToString()
+        </text>
+        <div class="form-horizontal">
+            <h4>Add new Staff </h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <fieldset>
+
+                <div class=" container">
+                    <div class=" row">
+
+                        <div class=" col-md-4">
+                            <div class="form-group">
+                                First Name :
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @style = "text-align:center" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class=" col-md-4">
+                            <div class="form-group">
+                                Middle Name :
+                                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control", @style = "text-align:center" } })
+                                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class=" col-md-4">
+                            <div class="form-group">
+                                Last Name :
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @style = "text-align:center" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class=" col-md-4">
+                            <div class="form-group">
+                                Enrollment Date :
+                                @Html.EditorFor(model => model.EnrollmentDate, new { htmlAttributes = new { @class = "form-control", @style = "text-align:center", @placeholder = "yyyy-mm-dd" } })
+                                @Html.ValidationMessageFor(model => model.EnrollmentDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class=" col-md-4">
+                            <div class="form-group">
+                                Phone Number :
+                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @style = "text-align:center" } })
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class=" col-md-4">
+                            <div class="form-group">
+                                Gender :
+                                @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control", @style = "text-align:center" } })
+                                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class=" col-md-4">
+                            <div class="form-group">
+                                Email Address :
+                                @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control", @style = "text-align:center" } })
+                                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class=" col-md-4">
+                            <div class="form-group">
+                                Payment Code :
+                                @Html.EditorFor(model => model.PaymentCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "text-align:center" } })
+                                @Html.ValidationMessageFor(model => model.PaymentCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class=" col-md-4">
+                            <div class="form-group">
+                                Address :
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @style = "text-align:center" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class=" col-md-4">
+                            <div class=" form-group">
+                                Company Name :
+                                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "text-align:center" } })
+                                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class=" col-md-4">
+                            <div class="form-group">
+                                Balance :
+                                @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control", @style = "text-align:center" } })
+                                @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class=" col-md-4">
+                            <div class="form-group">
+                                Password :
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @style = "text-align:center" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input type="submit" value="Add New" id="btnCreate " class="btn btn bg-primary" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </fieldset>
+
+
+
+
+        </div>
+    }
+}
+
+<div>
+    @Html.ActionLink("Back to Staff List", "UserDashBoard")
+</div>

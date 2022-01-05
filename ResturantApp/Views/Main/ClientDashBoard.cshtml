@@ -1,0 +1,120 @@
+﻿@model List<ResturantApp.Models.StaffTransaction>
+@{
+    ViewBag.Title = "Client Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .modal {
+        text-align: center;
+        padding: 0 !important;
+    }
+
+        .modal:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+        }
+
+    .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    fieldset {
+        border: 1px solid #ddd !important;
+        margin: 0;
+        xmin-width: 0;
+        padding: 10px;
+        position: relative;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        padding-left: 10px !important;
+    }
+
+    legend {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 0px;
+        width: 35%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px 5px 5px 10px;
+        background-color: #ffffff;
+    }
+</style>
+
+
+
+<fieldset>
+    <legend> Client DashBoard </legend>
+
+    @if (Session["PaymentCode"] != null)
+    {
+        <fieldset>
+            <legend>
+                <text>
+                    Welcome @Session["FirstName"].ToString()  @Session["LastName"].ToString()
+                </text>
+            </legend>
+
+        </fieldset>
+        <div >
+            
+            Account Balance: @Session["Balance"]
+        </div>
+        <div>
+            <table style="width: 100%" border=1 frame=void rules=rows>
+                <tr>
+                    <th>
+                        Payment ID
+                    </th>
+
+                    <th>
+                        Amount
+                    </th>
+
+                    <th>
+                        Payment Date
+                    </th>
+
+                    <th>
+                        Transaction Number
+                    </th>
+                </tr>
+
+                @foreach (var payment in Model)
+                {
+                    if (payment.PaymentCode == @Session["PaymentCode"].ToString())
+                    {
+                        <tr>
+                            <td>@payment.PaymentId </td>
+
+                            <td>@payment.Amount </td>
+
+                            <td>@payment.PaymentDate </td>
+
+                            <td>@payment.OrderNumber </td>
+                            @*<td>
+                                @Html.ActionLink("Edit Staff Data", "Edit", new { id = staff.StaffId }) |
+                                @Html.ActionLink("Delete Staff Data", "Delete", new { id = staff.StaffId }, new { @style = "color:#ff0000" }) |
+                                @Html.ActionLink("Payment Page", "Payment", new { PaymentCode = staff.PaymentCode })
+                            </td>*@
+                        </tr>
+
+                    }
+
+
+                }
+            </table>
+
+         
+        </div>
+    }
+</fieldset>
+
+
